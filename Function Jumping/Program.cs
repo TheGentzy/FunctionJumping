@@ -72,7 +72,7 @@ namespace Function_Jumping
 
     class FunctionJumper
     {
-        unsafe static public int HookMethodFromTo (string source_method_name, string destination_method_name)
+        static public int HookMethodFromTo (string source_method_name, string destination_method_name)
         {
             Type source_type;
             Type destination_type;
@@ -113,6 +113,12 @@ namespace Function_Jumping
             MethodInfo Source_Method      = source_type     .GetMethod(source_method_name_end,      (BindingFlags)(60));
             MethodInfo Destination_Method = destination_type.GetMethod(destination_method_name_end, (BindingFlags)(60));
 
+            //Call REAL method
+            return HookMethodFromTo(Source_Method, Destination_Method);
+        }
+
+        unsafe static public int HookMethodFromTo(MethodInfo Source_Method, MethodInfo Destination_Method)
+        {
             if (Source_Method == null || Destination_Method == null)
             {
                 Console.WriteLine("NO MethodInfo - 404 ERROR");
@@ -121,20 +127,20 @@ namespace Function_Jumping
             }
 
             //Get where the function is...
-            int Source_Base      = Source_Method.MethodHandle     .GetFunctionPointer().ToInt32();
+            int Source_Base = Source_Method.MethodHandle.GetFunctionPointer().ToInt32();
             int Destination_Base = Destination_Method.MethodHandle.GetFunctionPointer().ToInt32();
 
             //Calculate the diffrence between the 2 function's locations
             int offset_raw = Destination_Base - Source_Base;
 
-            uint* Pointer_Raw_Source  = (uint*) Source_Base;
+            uint* Pointer_Raw_Source = (uint*)Source_Base;
 
             // [WEIRD POINTER MATH] //
             //From RawCode
             *(Pointer_Raw_Source + 0) = 0xE9909090;
             *(Pointer_Raw_Source + 1) = (uint)(offset_raw - 8);
             // [/WEIRD POINTER MATH] //
-            
+
 
             return 0;
         }
