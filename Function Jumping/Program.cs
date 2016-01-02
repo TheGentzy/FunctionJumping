@@ -70,65 +70,81 @@ namespace Function_Jumping
         }
     }
 
-    class FunctionJumper
+    static class FunctionJumperEventDriver_FOR_BOO
     {
-        static public int HookMethodFromTo (string source_method_name, string destination_method_name)
+        public delegate void CallAction();  //I need the same signature as the event ya want to override... 
+                                            //Ex: 
+                                                //If the method ya want to overide is named:
+                                                    //int Killme(int howmanytimes, DieType dieType)
+                                                //Then renaim this method too:
+                                                    //public delegate int CallAction(int howmanytimes, DieType dieType)
+                                            //Understand? PS: I don't care about its access level...
+
+        public static event CallAction OnCalled;
+
+        private static bool inited = false;
+
+        //Need to check if OnCalled is null... sorryfor extra function :(
+        public static void OnCalledGate()   //I need the same signature as the event ya want to override here too! 
+                                            //Ex: 
+                                                //If the method ya want to overide is named:
+                                                    //int Killme(int howmanytimes, DieType dieType)
+                                                //Then renaim this method too:
+                                                    //public int OnCalledGate(int howmanytimes, DieType dieType)
+                                            //Understand? PS: I don't care about its access level...
         {
-            Type source_type;
-            Type destination_type;
+            if (OnCalled != null)
+                OnCalled(); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
+        }
 
-            //Drop the brackets...
-            source_method_name      = source_method_name.Remove     (source_method_name.Length      - 2);
-            destination_method_name = destination_method_name.Remove(destination_method_name.Length - 2);
+        //TODO: HARDCODE VALUE
+        public static MethodInfo functionToOverride {  //Set this at runtime... or hardcode it if ya figure out how...
 
-            //Split MethodName into its parts...
-            string[] source_method_name_parts      = source_method_name     .Split('.');
-            string[] destination_method_name_parts = destination_method_name.Split('.');
+            get { return functionToOverride; }
 
-            //Get the name of the function
-            string source_method_name_end      = source_method_name_parts     [source_method_name_parts.Length - 1];
-            string destination_method_name_end = destination_method_name_parts[source_method_name_parts.Length - 1];
-
-            //Console.WriteLine(source_method_name_end + " AND " + destination_method_name_end);
-
-            //Get the class name...
-            source_method_name      = source_method_name     .Remove(source_method_name     .Length - source_method_name_end     .Length - 1);
-            destination_method_name = destination_method_name.Remove(destination_method_name.Length - destination_method_name_end.Length - 1);
-
-            //Console.WriteLine(source_method_name + " AND " + destination_method_name);
-
-            //Convert the string into a class type
-            source_type      = Type.GetType(source_method_name);
-            destination_type = Type.GetType(destination_method_name);
-
-            //Check for errors...
-            if (source_type == null || destination_type == null)
+            set
             {
-                Console.WriteLine("NO Type - 404 ERROR");
+                if (value == null)
+                {
+                    Console.WriteLine("NO FUNCTION");
+                    return;
+                }
 
+                if (inited)
+                {
+                    Console.WriteLine("Already inited... too late.");
+                    return;
+                }
+
+                functionToOverride = value;
+            }
+        }
+
+        unsafe static public int Init()
+        {
+            if (inited == true)
+            {
+                Console.WriteLine("Already activated...");
+                return 0;
+            }
+
+            if (functionToOverride == null)
+            {
+                Console.WriteLine("NO functionToOverride - 404 ERROR...");
                 return 404;
             }
 
-            //Grab the methodinfo...
-            MethodInfo Source_Method      = source_type     .GetMethod(source_method_name_end,      (BindingFlags)(60));
-            MethodInfo Destination_Method = destination_type.GetMethod(destination_method_name_end, (BindingFlags)(60));
+            MethodInfo eventMethod = Type.GetMethod(MethodBase.GetCurrentMethod().Name); 
 
-            //Call REAL method
-            return HookMethodFromTo(Source_Method, Destination_Method);
-        }
-
-        unsafe static public int HookMethodFromTo(MethodInfo Source_Method, MethodInfo Destination_Method)
-        {
-            if (Source_Method == null || Destination_Method == null)
+            if (eventMethod == null)
             {
-                Console.WriteLine("NO MethodInfo - 404 ERROR");
-
+                Console.WriteLine("We failed to get out eventMethod...");
                 return 404;
             }
 
             //Get where the function is...
-            int Source_Base = Source_Method.MethodHandle.GetFunctionPointer().ToInt32();
-            int Destination_Base = Destination_Method.MethodHandle.GetFunctionPointer().ToInt32();
+            int Source_Base = functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
+            int Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
 
             //Calculate the diffrence between the 2 function's locations
             int offset_raw = Destination_Base - Source_Base;
@@ -141,8 +157,20 @@ namespace Function_Jumping
             *(Pointer_Raw_Source + 1) = (uint)(offset_raw - 8);
             // [/WEIRD POINTER MATH] //
 
+            inited = true;
 
             return 0;
+        }
+
+        //AS RELABLE AS YOUTUBE!
+        static void subToThisEvent(Delegate newSub)
+        {
+            OnCalled += (CallAction)newSub;
+        }
+
+        static void unsubToThisEvent(Delegate oldSub)
+        {
+            OnCalled -= (CallAction)oldSub;
         }
     }
 }
