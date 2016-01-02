@@ -1,11 +1,12 @@
-Function Jumping/bin/Debug/Function Jumping.exe
-Function Jumping/bin/Debug/Function Jumping.pdb
-Function Jumping/bin/Debug/Function Jumping.vshost.exe.manifest
-Function Jumping/obj/Debug/Function Jumping.exe
-Function Jumping/obj/Debug/Function Jumping.pdb
 Function Jumping/obj
 Function Jumping/bin
 Function Jumping/obj/*
 Function Jumping/bin/*
 Function Jumping/obj/Release
 Function Jumping/bin/Release
+Function Jumping/obj/Release/*
+Function Jumping/bin/Release/*
+Function Jumping/obj/Debug
+Function Jumping/bin/Debug
+Function Jumping/obj/Debug/*
+Function Jumping/bin/Debug/*
