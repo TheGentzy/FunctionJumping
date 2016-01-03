@@ -12,6 +12,8 @@ Done:
 
 ToDo:
 
--Some sort of method to auto duplicate the Event class for every function.
+-Some sort of method to auto duplicate the Event class for every function. (Possibly Generics)
 
 -Allow the passing of return type and paremetters of a function to avoid an AmbiguousMatchException for functions with overrides.
+
+-When multiple Functions are added to the same event, only the last one added gets to passback its return value. Implement the passing back of an LIST of return values.
