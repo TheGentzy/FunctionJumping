@@ -16,6 +16,6 @@ ToDo:
 
 -Allow the passing of return type and paremetters of a function to avoid an AmbiguousMatchException for functions with overrides. IN PROGRESS!
 
-_-When multiple Functions are added to the same event, only the last one added gets to passback its return value. Implement the passing back of an LIST of return values_
+~~-When multiple Functions are added to the same event, only the last one added gets to passback its return value. Implement the passing back of an LIST of return values~~
 
 -Support Out keyword
