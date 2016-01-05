@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Function_Far_Far_Away
@@ -9,7 +10,7 @@ namespace Function_Far_Far_Away
         {
             Console.WriteLine("A API");
         }
-        static public void BAPI()
+        static public unsafe void BAPI(int[] num, ref int*[] num2)
         {
             Console.WriteLine("B API");
         }
@@ -20,15 +21,25 @@ namespace Function_Jumping
 {
     class Program
     {
-        static void Main(string[] args)
+        static unsafe void Main(string[] args)
         {
+            int[] num = new int[5]{ 5, 5, 5, 5, 5 };
+            int*[] num2 = new int*[1] { (int*) 0 };
+
             //Initial try
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
-            Function_Far_Far_Away.RimAPIFunctions.BAPI();
+            Function_Far_Far_Away.RimAPIFunctions.BAPI(num, ref num2);
             Console.WriteLine(C(9));
 
             Console.WriteLine("HIT ENTER!!! \n\r \n\r");
             Console.ReadLine();
+
+            //Pass function ifo to events              //Its static, its internal,  no parameters, its location
+            FunctionJumperEventDriver_For_A.FunctionInfo(     false,        false, new Type[] { }, "Function_Far_Far_Away.RimAPIFunctions.AAPI");
+                                                       //Its static, its public,                                                                                              2 parameters, its location
+            FunctionJumperEventDriver_For_B.FunctionInfo(     false,       true, new Type[] { typeof(int).MakeArrayType(), typeof(int).MakePointerType().MakeArrayType().MakeByRefType() }, "Function_Far_Far_Away.RimAPIFunctions.BAPI");
+                                                       //Its static, its public,               1 parrameter, its location
+            FunctionJumperEventDriver_For_C.FunctionInfo(     false,      false, new Type[] { typeof(int) }, "Function_Jumping.Program.C");
 
             //Init Events
             FunctionJumperEventDriver_For_A.Init();
@@ -42,7 +53,7 @@ namespace Function_Jumping
 
             //Secound try
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
-            Function_Far_Far_Away.RimAPIFunctions.BAPI();
+            Function_Far_Far_Away.RimAPIFunctions.BAPI(num, ref num2);
             Console.WriteLine(C(9));
 
             Console.WriteLine("HIT ENTER!!! \n\r \n\r");
@@ -55,22 +66,19 @@ namespace Function_Jumping
 
             //Third try
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
-            Function_Far_Far_Away.RimAPIFunctions.BAPI();
+            Function_Far_Far_Away.RimAPIFunctions.BAPI(num, ref num2);
             Console.WriteLine(C(9));
 
             Console.WriteLine("HIT ENTER!!! \n\r \n\r");
             Console.ReadLine();
 
             //Multiple on each functions
-            FunctionJumperEventDriver_For_A.OnCalled += RimFunctions.A;
-            FunctionJumperEventDriver_For_B.OnCalled += RimFunctions.A;
-            FunctionJumperEventDriver_For_A.OnCalled += RimFunctions.B;
-            FunctionJumperEventDriver_For_B.OnCalled += RimFunctions.B;
             FunctionJumperEventDriver_For_C.OnCalled += RimFunctions.C;
+            FunctionJumperEventDriver_For_C.OnCalled += D;
 
             //Fourth try
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
-            Function_Far_Far_Away.RimAPIFunctions.BAPI();
+            Function_Far_Far_Away.RimAPIFunctions.BAPI(num, ref num2);
             Console.WriteLine(C(9));
 
             Console.WriteLine("HIT ENTER!!!");
@@ -82,6 +90,18 @@ namespace Function_Jumping
             Console.WriteLine("C OVERRIDE");
             return num * num;
         }
+
+        static public int C(int num, int num2)
+        {
+            Console.WriteLine("C NORM" + num2);
+            return num;
+        }
+
+        static private int D(int num)
+        {
+            Console.WriteLine("D OVERRIDE");
+            return num * num * num;
+        }
     }
 
     class RimFunctions
@@ -90,7 +110,7 @@ namespace Function_Jumping
         {
             Console.WriteLine("A NORM");
         }
-        static public void B()
+        static public unsafe void B(int[] num, ref int*[] num2)
         {
             Console.WriteLine("B NORM");
         }
@@ -103,7 +123,7 @@ namespace Function_Jumping
 
     static class FunctionJumperEventDriver_For_A
     {
-        public delegate void CallAction();  //I need the same signature as the event ya want to override... 
+        public delegate void CallAction();      //I need the same signature as the event ya want to override... 
                                                 //Ex: 
                                                 //If the method ya want to overide is named:
                                                 //int Killme(int howmanytimes, DieType dieType)
@@ -114,9 +134,10 @@ namespace Function_Jumping
         public static event CallAction OnCalled;
 
         private static bool inited = false;
+        public static bool allowedToInit { get; private set; } = false;
 
         //Need to check if OnCalled is null... sorry for extra function :(
-        public static void OnCalledGate()   //I need the same signature as the event ya want to override here too! 
+        public static void OnCalledGate()       //I need the same signature as the event ya want to override here too! 
                                                 //Ex: 
                                                 //If the method ya want to overide is named:
                                                 //int Killme(int howmanytimes, DieType dieType)
@@ -128,7 +149,70 @@ namespace Function_Jumping
                 OnCalled(); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
         }
 
-        private static string functionToOverrideName = "Function_Far_Far_Away.RimAPIFunctions.AAPI()";
+        private static string functionToOverrideName = ""; //Don't put parameters
+        private static bool isInstanceOrVirtual = false;
+        private static bool isPublic = false;
+
+        static public int FunctionInfo(bool _isInstanceOrVirtual, bool _isPublic,
+                                        Type[] parametersForFunction, string _functionToOverrideName)
+        {
+            if (inited == true)
+            {
+                Console.WriteLine("Already activated...");
+                return 0;
+            }
+            allowedToInit = false;
+
+            //Set varibals
+            isInstanceOrVirtual = _isInstanceOrVirtual;
+            isPublic = _isPublic;
+            functionToOverrideName = _functionToOverrideName;
+
+            //Split MethodName into its parts...
+            string[] functionToOverrideNameParts = _functionToOverrideName.Split('.');
+
+            //Get the name of the function
+            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
+
+            //Get the class name...
+            functionToOverrideName = _functionToOverrideName.Remove(_functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
+
+            //Convert the string into a class type & Grab the methodinfo...
+            MethodInfo _functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic)
+                                                                                                                     | (isInstanceOrVirtual ? BindingFlags.Instance : BindingFlags.Static)
+                                                                                                                     | BindingFlags.FlattenHierarchy,
+                                                                                                                     null, CallingConventions.Any, parametersForFunction, null);
+
+            if (_functionToOverride == null)
+            {
+                Console.WriteLine("NO functionToOverride - 404 ERROR...");
+                return 404;
+            }
+
+            //Get OnCalledGate()
+            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
+            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
+
+            if (eventMethod == null)
+            {
+                Console.WriteLine("We failed to get the eventMethod...");
+                return 404;
+            }
+
+            //Get where the function is...
+            int _Source_Base = _functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
+            int _Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
+
+            //Pass forward method locations!
+            Source_Base = _Source_Base;
+            Destination_Base = _Destination_Base;
+
+            //We now got the data we need
+            allowedToInit = true;
+            return 0;
+        }
+
+        private static int Source_Base, Destination_Base;
 
         unsafe static public int Init()
         {
@@ -138,43 +222,14 @@ namespace Function_Jumping
                 return 0;
             }
 
-            //Drop the brackets...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - 2);
-
-            //Split MethodName into its parts...
-            string[] functionToOverrideNameParts = functionToOverrideName.Split('.');
-
-            //Get the name of the function
-            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
-
-            //Get the class name...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
-
-            //Convert the string into a class type & Grab the methodinfo...
-            MethodInfo functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (BindingFlags)(60) /*Inctance, Non-Public, Public and Static functions included in search*/);
-
-            if (functionToOverride == null)
+            if (allowedToInit == false)
             {
-                Console.WriteLine("NO functionToOverride - 404 ERROR...");
-                return 404;
+                Console.WriteLine("I say your giving me invalid/no info");
+                return -1;
             }
-
-            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
-            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
-
-            if (eventMethod == null)
-            {
-                Console.WriteLine("We failed to get out eventMethod...");
-                return 404;
-            }
-
-            //Get where the function is...
-            int Source_Base = functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
-            int Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
 
             //Calculate the diffrence between the 2 function's locations
             int offset_raw = Destination_Base - Source_Base;
-
             uint* Pointer_Raw_Source = (uint*)Source_Base;
 
             // [WEIRD POINTER MATH] //
@@ -191,32 +246,96 @@ namespace Function_Jumping
 
     static class FunctionJumperEventDriver_For_B
     {
-        public delegate void CallAction();  //I need the same signature as the event ya want to override... 
-                                            //Ex: 
-                                            //If the method ya want to overide is named:
-                                            //int Killme(int howmanytimes, DieType dieType)
-                                            //Then renaim this method too:
-                                            //public delegate int CallAction(int howmanytimes, DieType dieType)
-                                            //Understand? PS: I don't care about its access level...
+        public unsafe delegate void CallAction(int[] num, ref int*[] num2);      //I need the same signature as the event ya want to override... 
+                                                //Ex: 
+                                                //If the method ya want to overide is named:
+                                                //int Killme(int howmanytimes, DieType dieType)
+                                                //Then renaim this method too:
+                                                //public delegate int CallAction(int howmanytimes, DieType dieType)
+                                                //Understand? PS: I don't care about its access level...
 
         public static event CallAction OnCalled;
 
         private static bool inited = false;
+        public static bool allowedToInit { get; private set; } = false;
 
         //Need to check if OnCalled is null... sorry for extra function :(
-        public static void OnCalledGate()   //I need the same signature as the event ya want to override here too! 
-                                            //Ex: 
-                                            //If the method ya want to overide is named:
-                                            //int Killme(int howmanytimes, DieType dieType)
-                                            //Then renaim this method too:
-                                            //public int OnCalledGate(int howmanytimes, DieType dieType)
-                                            //Understand? PS: I don't care about its access level...
+        public static unsafe void OnCalledGate(int[] num, ref int*[] num2)       //I need the same signature as the event ya want to override here too! 
+                                                //Ex: 
+                                                //If the method ya want to overide is named:
+                                                //int Killme(int howmanytimes, DieType dieType)
+                                                //Then renaim this method too:
+                                                //public int OnCalledGate(int howmanytimes, DieType dieType)
+                                                //Understand? PS: I don't care about its access level...
         {
             if (OnCalled != null)
-                OnCalled(); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
+                OnCalled(num, ref num2); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
         }
 
-        private static string functionToOverrideName = "Function_Far_Far_Away.RimAPIFunctions.BAPI()";
+        private static string functionToOverrideName = ""; //Don't put parameters
+        private static bool isInstanceOrVirtual = false;
+        private static bool isPublic = false;
+
+        static public int FunctionInfo(bool _isInstanceOrVirtual, bool _isPublic,
+                                        Type[] parametersForFunction, string _functionToOverrideName)
+        {
+            if (inited == true)
+            {
+                Console.WriteLine("Already activated...");
+                return 0;
+            }
+            allowedToInit = false;
+
+            //Set varibals
+            isInstanceOrVirtual = _isInstanceOrVirtual;
+            isPublic = _isPublic;
+            functionToOverrideName = _functionToOverrideName;
+
+            //Split MethodName into its parts...
+            string[] functionToOverrideNameParts = _functionToOverrideName.Split('.');
+
+            //Get the name of the function
+            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
+
+            //Get the class name...
+            functionToOverrideName = _functionToOverrideName.Remove(_functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
+
+            //Convert the string into a class type & Grab the methodinfo...
+            MethodInfo _functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic)
+                                                                                                                     | (isInstanceOrVirtual ? BindingFlags.Instance : BindingFlags.Static)
+                                                                                                                     | BindingFlags.FlattenHierarchy,
+                                                                                                                     null, CallingConventions.Any, parametersForFunction, null);
+
+            if (_functionToOverride == null)
+            {
+                Console.WriteLine("NO functionToOverride - 404 ERROR...");
+                return 404;
+            }
+
+            //Get OnCalledGate()
+            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
+            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
+
+            if (eventMethod == null)
+            {
+                Console.WriteLine("We failed to get the eventMethod...");
+                return 404;
+            }
+
+            //Get where the function is...
+            int _Source_Base = _functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
+            int _Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
+
+            //Pass forward method locations!
+            Source_Base = _Source_Base;
+            Destination_Base = _Destination_Base;
+
+            //We now got the data we need
+            allowedToInit = true;
+            return 0;
+        }
+
+        private static int Source_Base, Destination_Base;
 
         unsafe static public int Init()
         {
@@ -226,43 +345,14 @@ namespace Function_Jumping
                 return 0;
             }
 
-            //Drop the brackets...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - 2);
-
-            //Split MethodName into its parts...
-            string[] functionToOverrideNameParts = functionToOverrideName.Split('.');
-
-            //Get the name of the function
-            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
-
-            //Get the class name...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
-
-            //Convert the string into a class type & Grab the methodinfo...
-            MethodInfo functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (BindingFlags)(60) /*Inctance, Non-Public, Public and Static functions included in search*/);
-
-            if (functionToOverride == null)
+            if (allowedToInit == false)
             {
-                Console.WriteLine("NO functionToOverride - 404 ERROR...");
-                return 404;
+                Console.WriteLine("I say your giving me invalid/no info");
+                return -1;
             }
-
-            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
-            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
-
-            if (eventMethod == null)
-            {
-                Console.WriteLine("We failed to get out eventMethod...");
-                return 404;
-            }
-
-            //Get where the function is...
-            int Source_Base = functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
-            int Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
 
             //Calculate the diffrence between the 2 function's locations
             int offset_raw = Destination_Base - Source_Base;
-
             uint* Pointer_Raw_Source = (uint*)Source_Base;
 
             // [WEIRD POINTER MATH] //
@@ -279,32 +369,97 @@ namespace Function_Jumping
 
     static class FunctionJumperEventDriver_For_C
     {
-        public delegate int CallAction(int num);  //I need the same signature as the event ya want to override... 
-                                                  //Ex: 
-                                                  //If the method ya want to overide is named:
-                                                  //int Killme(int howmanytimes, DieType dieType)
-                                                  //Then renaim this method too:
-                                                  //public delegate int CallAction(int howmanytimes, DieType dieType)
-                                                  //Understand? PS: I don't care about its access level...
+        public delegate int CallAction(int num);    //I need the same signature as the event ya want to override... 
+                                                    //Ex: 
+                                                    //If the method ya want to overide is named:
+                                                    //int Killme(int howmanytimes, DieType dieType)
+                                                    //Then renaim this method too:
+                                                    //public delegate int CallAction(int howmanytimes, DieType dieType)
+                                                    //Understand? PS: I don't care about its access level...
 
         public static event CallAction OnCalled;
 
         private static bool inited = false;
+        public static bool allowedToInit { get; private set; } = false;
 
         //Need to check if OnCalled is null... sorry for extra function :(
-        public static void OnCalledGate(int num)   //I need the same signature as the event ya want to override here too! 
-                                            //Ex: 
-                                            //If the method ya want to overide is named:
-                                            //int Killme(int howmanytimes, DieType dieType)
-                                            //Then renaim this method too:
-                                            //public void OnCalledGate(int howmanytimes, DieType dieType)
-                                            //Understand? PS: I don't care about its access level... OR its return type...
+        public static int OnCalledGate(int num)       //I need the same signature as the event ya want to override here too! 
+                                                //Ex: 
+                                                //If the method ya want to overide is named:
+                                                //int Killme(int howmanytimes, DieType dieType)
+                                                //Then renaim this method too:
+                                                //public int OnCalledGate(int howmanytimes, DieType dieType)
+                                                //Understand? PS: I don't care about its access level...
         {
             if (OnCalled != null)
-                OnCalled(num); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
+                return OnCalled(num); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s
+            return -1; 
         }
 
-        private static string functionToOverrideName = "Function_Jumping.Program.C()";
+        private static string functionToOverrideName = ""; //Don't put parameters
+        private static bool isInstanceOrVirtual = false;
+        private static bool isPublic = false;
+
+        static public int FunctionInfo(bool _isInstanceOrVirtual, bool _isPublic,
+                                        Type[] parametersForFunction, string _functionToOverrideName)
+        {
+            if (inited == true)
+            {
+                Console.WriteLine("Already activated...");
+                return 0;
+            }
+            allowedToInit = false;
+
+            //Set varibals
+            isInstanceOrVirtual = _isInstanceOrVirtual;
+            isPublic = _isPublic;
+            functionToOverrideName = _functionToOverrideName;
+
+            //Split MethodName into its parts...
+            string[] functionToOverrideNameParts = _functionToOverrideName.Split('.');
+
+            //Get the name of the function
+            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
+
+            //Get the class name...
+            functionToOverrideName = _functionToOverrideName.Remove(_functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
+
+            //Convert the string into a class type & Grab the methodinfo...
+            MethodInfo _functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic)
+                                                                                                                     | (isInstanceOrVirtual ? BindingFlags.Instance : BindingFlags.Static)
+                                                                                                                     | BindingFlags.FlattenHierarchy,
+                                                                                                                     null, CallingConventions.Any, parametersForFunction, null);
+
+            if (_functionToOverride == null)
+            {
+                Console.WriteLine("NO functionToOverride - 404 ERROR...");
+                return 404;
+            }
+
+            //Get OnCalledGate()
+            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
+            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
+
+            if (eventMethod == null)
+            {
+                Console.WriteLine("We failed to get the eventMethod...");
+                return 404;
+            }
+
+            //Get where the function is...
+            int _Source_Base = _functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
+            int _Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
+
+            //Pass forward method locations!
+            Source_Base = _Source_Base;
+            Destination_Base = _Destination_Base;
+
+            //We now got the data we need
+            allowedToInit = true;
+            return 0;
+        }
+
+        private static int Source_Base, Destination_Base;
 
         unsafe static public int Init()
         {
@@ -314,43 +469,14 @@ namespace Function_Jumping
                 return 0;
             }
 
-            //Drop the brackets...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - 2);
-
-            //Split MethodName into its parts...
-            string[] functionToOverrideNameParts = functionToOverrideName.Split('.');
-
-            //Get the name of the function
-            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
-
-            //Get the class name...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
-
-            //Convert the string into a class type & Grab the methodinfo...
-            MethodInfo functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (BindingFlags)(60) /*Inctance, Non-Public, Public and Static functions included in search*/);
-
-            if (functionToOverride == null)
+            if (allowedToInit == false)
             {
-                Console.WriteLine("NO functionToOverride - 404 ERROR...");
-                return 404;
+                Console.WriteLine("I say your giving me invalid/no info");
+                return -1;
             }
-
-            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
-            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
-
-            if (eventMethod == null)
-            {
-                Console.WriteLine("We failed to get out eventMethod...");
-                return 404;
-            }
-
-            //Get where the function is...
-            int Source_Base = functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
-            int Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
 
             //Calculate the diffrence between the 2 function's locations
             int offset_raw = Destination_Base - Source_Base;
-
             uint* Pointer_Raw_Source = (uint*)Source_Base;
 
             // [WEIRD POINTER MATH] //
@@ -367,91 +493,130 @@ namespace Function_Jumping
 }
 
 /* GENERIC EVENT */
-/*     static class FunctionJumperEventDriver_For_A
+/*
+static class FunctionJumperEventDriver
+{
+    public delegate void CallAction();      //I need the same signature as the event ya want to override... 
+                                            //Ex: 
+                                            //If the method ya want to overide is named:
+                                            //int Killme(int howmanytimes, DieType dieType)
+                                            //Then renaim this method too:
+                                            //public delegate int CallAction(int howmanytimes, DieType dieType)
+                                            //Understand? PS: I don't care about its access level...
+
+    public static event CallAction OnCalled;
+
+    private static bool inited = false;
+    public static bool allowedToInit { get; private set; } = false;
+                                        
+    //Need to check if OnCalled is null... sorry for extra function :(
+    public static void OnCalledGate()       //I need the same signature as the event ya want to override here too! 
+                                            //Ex: 
+                                            //If the method ya want to overide is named:
+                                            //int Killme(int howmanytimes, DieType dieType)
+                                            //Then renaim this method too:
+                                            //public int OnCalledGate(int howmanytimes, DieType dieType)
+                                            //Understand? PS: I don't care about its access level...
     {
-        public delegate void CallAction();  //I need the same signature as the event ya want to override... 
-                                                //Ex: 
-                                                //If the method ya want to overide is named:
-                                                //int Killme(int howmanytimes, DieType dieType)
-                                                //Then renaim this method too:
-                                                //public delegate int CallAction(int howmanytimes, DieType dieType)
-                                                //Understand? PS: I don't care about its access level...
+        if (OnCalled != null)
+            OnCalled(); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
+    }
 
-        public static event CallAction OnCalled;
+    private static string functionToOverrideName = ""; //Don't put parameters
+    private static bool isInstanceOrVirtual = false;
+    private static bool isPublic = false;
 
-        private static bool inited = false;
-
-        //Need to check if OnCalled is null... sorry for extra function :(
-        public static void OnCalledGate()   //I need the same signature as the event ya want to override here too! 
-                                                //Ex: 
-                                                //If the method ya want to overide is named:
-                                                //int Killme(int howmanytimes, DieType dieType)
-                                                //Then renaim this method too:
-                                                //public int OnCalledGate(int howmanytimes, DieType dieType)
-                                                //Understand? PS: I don't care about its access level...
+    static public int FunctionInfo(bool _isInstanceOrVirtual, bool _isPublic, 
+                                    Type[] parametersForFunction,     string _functionToOverrideName)
+    {
+        if (inited == true)
         {
-            if (OnCalled != null)
-                OnCalled(); //Pass everything forward... keep the paremetters the same as OnCalledGate()'s 
-        }
-
-        private static string functionToOverrideName = "Function_Far_Far_Away.RimAPIFunctions.AAPI()";
-
-        unsafe static public int Init()
-        {
-            if (inited == true)
-            {
-                Console.WriteLine("Already activated...");
-                return 0;
-            }
-
-            //Drop the brackets...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - 2);
-
-            //Split MethodName into its parts...
-            string[] functionToOverrideNameParts = functionToOverrideName.Split('.');
-
-            //Get the name of the function
-            string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
-
-            //Get the class name...
-            functionToOverrideName = functionToOverrideName.Remove(functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
-
-            //Convert the string into a class type & Grab the methodinfo...
-            MethodInfo functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (BindingFlags)(60)); //Inctance, Non-Public, Public and Static functions included in search
-
-            if (functionToOverride == null)
-            {
-                Console.WriteLine("NO functionToOverride - 404 ERROR...");
-                return 404;
-            }
-
-            Type eventMethodType = Type.GetType(MethodInfo.GetCurrentMethod().DeclaringType.FullName);
-            MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
-
-            if (eventMethod == null)
-            {
-                Console.WriteLine("We failed to get out eventMethod...");
-                return 404;
-            }
-
-            //Get where the function is...
-            int Source_Base = functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
-            int Destination_Base = eventMethod.MethodHandle.GetFunctionPointer().ToInt32();
-
-            //Calculate the diffrence between the 2 function's locations
-            int offset_raw = Destination_Base - Source_Base;
-
-            uint* Pointer_Raw_Source = (uint*)Source_Base;
-
-            // [WEIRD POINTER MATH] //
-            //From RawCode
-            *(Pointer_Raw_Source + 0) = 0xE9909090;
-            *(Pointer_Raw_Source + 1) = (uint)(offset_raw - 8);
-            // [/WEIRD POINTER MATH] //
-
-            inited = true;
-
+            Console.WriteLine("Already activated...");
             return 0;
         }
+        allowedToInit = false;
+
+        //Set varibals
+        isInstanceOrVirtual    = _isInstanceOrVirtual;
+        isPublic               = _isPublic;
+        functionToOverrideName = _functionToOverrideName;
+
+        //Split MethodName into its parts...
+        string[] functionToOverrideNameParts = _functionToOverrideName.Split('.');
+
+        //Get the name of the function
+        string functionToOverrideNameEnd = functionToOverrideNameParts[functionToOverrideNameParts.Length - 1];
+
+        //Get the class name...
+        functionToOverrideName = _functionToOverrideName.Remove(_functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
+
+        //Get the class name...
+        functionToOverrideName = _functionToOverrideName.Remove(_functionToOverrideName.Length - functionToOverrideNameEnd.Length - 1);
+
+        //Convert the string into a class type & Grab the methodinfo...
+        MethodInfo _functionToOverride = Type.GetType(functionToOverrideName).GetMethod(functionToOverrideNameEnd, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic)
+                                                                                                                 | (isInstanceOrVirtual ? BindingFlags.Instance : BindingFlags.Static)
+                                                                                                                 | BindingFlags.FlattenHierarchy,
+                                                                                                                 null, CallingConventions.Any, parametersForFunction, null);
+
+        if (_functionToOverride == null)
+        {
+            Console.WriteLine("NO functionToOverride - 404 ERROR...");
+            return 404;
+        }
+
+        //Get OnCalledGate()
+        Type eventMethodType   = Type           .GetType  (MethodInfo.GetCurrentMethod().DeclaringType.FullName);
+        MethodInfo eventMethod = eventMethodType.GetMethod("OnCalledGate");
+
+        if (eventMethod == null)
+        {
+            Console.WriteLine("We failed to get the eventMethod...");
+            return 404;
+        }
+
+        //Get where the function is...
+        int _Source_Base      = _functionToOverride.MethodHandle.GetFunctionPointer().ToInt32();
+        int _Destination_Base = eventMethod        .MethodHandle.GetFunctionPointer().ToInt32();
+
+        //Pass forward method locations!
+        Source_Base      = _Source_Base;
+        Destination_Base = _Destination_Base;
+
+        //We now got the data we need
+        allowedToInit = true;
+        return 0;
     }
- */
+
+    private static int Source_Base, Destination_Base;
+
+    unsafe static public int Init()
+    {
+        if (inited == true)
+        {
+            Console.WriteLine("Already activated...");
+            return 0;
+        }
+
+        if (allowedToInit == false)
+        {
+            Console.WriteLine("I say your giving me invalid/no info");
+            return -1;
+        }
+
+        //Calculate the diffrence between the 2 function's locations
+        int   offset_raw         = Destination_Base - Source_Base;
+        uint* Pointer_Raw_Source = (uint*)Source_Base;
+
+        // [WEIRD POINTER MATH] //
+        //From RawCode
+        *(Pointer_Raw_Source + 0) = 0xE9909090;
+        *(Pointer_Raw_Source + 1) = (uint)(offset_raw - 8);
+        // [/WEIRD POINTER MATH] //
+
+        inited = true;
+
+        return 0;
+    }
+}
+*/
