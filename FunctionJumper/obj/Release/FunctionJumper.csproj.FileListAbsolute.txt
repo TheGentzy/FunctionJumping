@@ -1,5 +1,0 @@
-C:\Projects\Dev\Rimmodding\Function Jumping\FunctionJumper\bin\Release\FunctionJumper.dll
-C:\Projects\Dev\Rimmodding\Function Jumping\FunctionJumper\bin\Release\FunctionJumper.pdb
-C:\Projects\Dev\Rimmodding\Function Jumping\FunctionJumper\obj\Release\FunctionJumper.csprojResolveAssemblyReference.cache
-C:\Projects\Dev\Rimmodding\Function Jumping\FunctionJumper\obj\Release\FunctionJumper.dll
-C:\Projects\Dev\Rimmodding\Function Jumping\FunctionJumper\obj\Release\FunctionJumper.pdb

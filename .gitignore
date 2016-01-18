@@ -10,3 +10,16 @@ Function Jumping/obj/Debug
 Function Jumping/bin/Debug
 Function Jumping/obj/Debug/*
 Function Jumping/bin/Debug/*
+
+FunctionJumper/obj
+FunctionJumper/bin
+FunctionJumper/obj/*
+FunctionJumper/bin/*
+FunctionJumper/obj/Release
+FunctionJumper/bin/Release
+FunctionJumper/obj/Release/*
+FunctionJumper/bin/Release/*
+FunctionJumper/obj/Debug
+FunctionJumper/bin/Debug
+FunctionJumper/obj/Debug/*
+FunctionJumper/bin/Debug/*
