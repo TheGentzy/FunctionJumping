@@ -6,3 +6,5 @@ C:\Projects\Dev\Rimmodding\Function Jumping\Function Jumping\obj\Debug\Function 
 C:\Projects\Dev\Rimmodding\Function Jumping\Function Jumping\obj\Debug\Function Jumping.pdb
 C:\Projects\Dev\Rimmodding\Function Jumping\Function Jumping\bin\Debug\Function Jumping.exe.CodeAnalysisLog.xml
 C:\Projects\Dev\Rimmodding\Function Jumping\Function Jumping\bin\Debug\Function Jumping.exe.lastcodeanalysissucceeded
+C:\Projects\Dev\Rimmodding\Function Jumping\Function Jumping\bin\Debug\FunctionJumper.dll
+C:\Projects\Dev\Rimmodding\Function Jumping\Function Jumping\bin\Debug\FunctionJumper.pdb
