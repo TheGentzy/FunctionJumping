@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="mainpage.dox" />
     <Compile Include="EventInterface.cs" />
     <Compile Include="EventMaster.cs" />
     <Compile Include="ReturnCodes.cs" />

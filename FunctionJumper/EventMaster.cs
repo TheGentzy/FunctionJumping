@@ -1,4 +1,23 @@
-﻿using System;
+﻿/**     
+ * @file EventMaster.cs
+ *
+ * @brief Compiles, maintains and activates events.
+ *
+ * This file contains the EventMaster. This is where you compile newevent systems, set them up and accses previously made ones. You'll need to use @ref FunctionJumper.EventInterface to subscribe to those events. 
+ *
+ * @todo Omptimize code
+ * @todo Make this progam NOT classified as a virus
+ * @todo Remove need for a C# compiler installed
+ * @todo Fix (un?)common stack trace issues
+ * @todo Implement Linux suport
+ * @todo Implement error handling
+ *
+ * @bug VS2015 crashes from 'Step Into' on an overriden function
+ * @bug No/Buggy support for instance functions
+ *
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.CodeDom.Compiler;
@@ -10,7 +29,7 @@ namespace FunctionJumper
         static List<MethodInfo> overriddenMethods = new List<MethodInfo>();
         static List<EventInterface> events = new List<EventInterface>();
 
-        static public EventInterface findEvent(string _funcName)
+        static public EventInterface getEvent(string _funcName)
         {
             foreach (EventInterface e in events)
             {
@@ -22,7 +41,7 @@ namespace FunctionJumper
             return null;
         }
 
-        static public void addOverriddenMethod(MethodInfo overridenMethod)
+        static internal void addOverriddenMethod(MethodInfo overridenMethod)
         {
             overriddenMethods.Add(overridenMethod);
         }
@@ -31,7 +50,7 @@ namespace FunctionJumper
         {
             if (sourceMethod == null)
             {
-                return (int)ReturnCodes.NoSource;
+                return (int)ReturnCodes.NoMethodInfo;
             }
 
             bool makeNewMethod = true;
@@ -185,7 +204,7 @@ namespace FunctionJumper
             return (int)ReturnCodes.Success;
         }
 
-        public static string getName(MethodInfo method)
+        static public string getName(MethodInfo method)
         {
             if (method == null)
             {

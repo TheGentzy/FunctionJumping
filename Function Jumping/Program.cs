@@ -76,10 +76,10 @@ namespace Function_Jumping_Example
                                                        new string[0] { }) + "\n\r");
 
             //Add them once!
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[0])).AddSub(overridingMethods[0]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[1])).AddSub(overridingMethods[1]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[2])).AddSub(overridingMethods[2]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[3])).AddSub(overridingMethods[3]) + "\n\r");
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[0])).AddSub(overridingMethods[0]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[1])).AddSub(overridingMethods[1]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[2])).AddSub(overridingMethods[2]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[3])).AddSub(overridingMethods[3]) + "\n\r");
 
             //Now we got our overriden methods... YAY!
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
@@ -91,10 +91,10 @@ namespace Function_Jumping_Example
             Console.ReadLine();
 
             //Lets have them each called twice!
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[0])).AddSub(overridingMethods[0]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[1])).AddSub(overridingMethods[1]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[2])).AddSub(overridingMethods[2]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[3])).AddSub(overridingMethods[3]) + "\n\r");
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[0])).AddSub(overridingMethods[0]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[1])).AddSub(overridingMethods[1]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[2])).AddSub(overridingMethods[2]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[3])).AddSub(overridingMethods[3]) + "\n\r");
 
             //Everyhing now runs twice...
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
@@ -106,10 +106,10 @@ namespace Function_Jumping_Example
             Console.ReadLine();
 
             //Lets remove them once... now thier only called once...
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[0])).RemoveSub(overridingMethods[0]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[1])).RemoveSub(overridingMethods[1]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[2])).RemoveSub(overridingMethods[2]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[3])).RemoveSub(overridingMethods[3]) + "\n\r");
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[0])).RemoveSub(overridingMethods[0]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[1])).RemoveSub(overridingMethods[1]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[2])).RemoveSub(overridingMethods[2]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[3])).RemoveSub(overridingMethods[3]) + "\n\r");
 
             //Should work as expected...
             Function_Far_Far_Away.RimAPIFunctions.AAPI();
@@ -121,10 +121,10 @@ namespace Function_Jumping_Example
             Console.ReadLine();
 
             //We will refuse to allow you to remove them now... we can't have less than 1 sub... (I don't trust the User Implemented OnCalledG method!)
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[0])).RemoveSub(overridingMethods[0]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[1])).RemoveSub(overridingMethods[1]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[2])).RemoveSub(overridingMethods[2]));
-            Console.WriteLine(EventMaster.findEvent(EventMaster.getName(overrideMethods[3])).RemoveSub(overridingMethods[3]) + "\n\r");
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[0])).RemoveSub(overridingMethods[0]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[1])).RemoveSub(overridingMethods[1]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[2])).RemoveSub(overridingMethods[2]));
+            Console.WriteLine(EventMaster.getEvent(EventMaster.getName(overrideMethods[3])).RemoveSub(overridingMethods[3]) + "\n\r");
 
             //Just like the last,,,
             Function_Far_Far_Away.RimAPIFunctions.AAPI();

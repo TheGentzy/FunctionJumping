@@ -1,4 +1,15 @@
-﻿using System;
+﻿/**
+ * @file EventInterface.cs
+ *
+ * @brief An interface to the events (which you cann't see without reflection!)
+ *
+ * This file contains the EventInterface. This is where you subscrie and unsuscribe to your events. Accsessed through @ref FunctionJumper.EventMaster's getEvent function. 
+ *
+ * @todo Omptimize code
+ *
+ */
+
+using System;
 using System.Reflection;
 
 namespace FunctionJumper
@@ -56,6 +67,11 @@ namespace FunctionJumper
 
         public int AddSub(MethodInfo newSub)
         {
+            if (newSub == null)
+            {
+                return (int)ReturnCodes.NoMethodInfo;
+            }
+
             Delegate subToAdd;
             try
             {
@@ -65,7 +81,7 @@ namespace FunctionJumper
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return (int)ReturnCodes.NoSubOrUnSubWasMade;
+                return (int)ReturnCodes.NoDelType;
             }
 
             if (subToAdd == null)
@@ -91,6 +107,11 @@ namespace FunctionJumper
 
         public int RemoveSub(MethodInfo oldSub)
         {
+            if (oldSub == null)
+            {
+                return (int)ReturnCodes.NoMethodInfo;
+            }
+
             if (subCount == 0)
             {
                 return (int)ReturnCodes.NoSub;
@@ -101,9 +122,20 @@ namespace FunctionJumper
                 return (int)ReturnCodes.NeedAlteastOneSub;
             }
 
-            //Make our delegate
-            Delegate subToRemove = Delegate.CreateDelegate(delegateType, oldSub);
-            if (subToRemove == null)
+            Delegate subToRemove;
+
+            try
+            {
+                //try making our delegate
+                subToRemove = Delegate.CreateDelegate(delegateType, oldSub);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return (int)ReturnCodes.NoDelType;
+            }
+
+            if(subToRemove == null)
             {
                 return (int)ReturnCodes.NoDelType;
             }
