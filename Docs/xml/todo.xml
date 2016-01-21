@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="todo" kind="page">
+    <compoundname>todo</compoundname>
+    <title>Todo List</title>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term><anchor id="todo_1_todo000001"/>File <ref refid="da/d68/_event_interface_8cs" kindref="compound">EventInterface.cs</ref>  </term></varlistentry>
+<listitem><para>Omptimize code </para></listitem>
+<varlistentry><term><anchor id="todo_1_todo000002"/>File <ref refid="da/d5c/_event_master_8cs" kindref="compound">EventMaster.cs</ref>  </term></varlistentry>
+<listitem><para>Omptimize code </para><para>Make this progam NOT classified as a virus </para><para>Remove need for a C# compiler installed </para><para>Fix (un?)common stack trace issues </para><para>Implement Linux suport </para><para>Implement error handling</para></listitem>
+</variablelist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

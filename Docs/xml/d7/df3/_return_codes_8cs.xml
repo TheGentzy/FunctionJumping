@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="d7/df3/_return_codes_8cs" kind="file" language="C#">
+    <compoundname>ReturnCodes.cs</compoundname>
+    <innernamespace refid="d1/d0b/namespace_function_jumper">FunctionJumper</innernamespace>
+    <briefdescription>
+<para>All the return codes used by FunctionJumper! </para>    </briefdescription>
+    <detaileddescription>
+<para>All the return codes used by FunctionJumper! Getting the same ReturnCode from diffrent functions doesn&apos;t meen the same thing... </para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="10"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d1/d0b/namespace_function_jumper" kindref="compound">FunctionJumper</ref></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18" refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048" kindref="member">ReturnCodes</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a505a83f220c02df2f85c3810cd9ceb38" kindref="member">Success</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a23bbdb9f7572fedc1c5be12ab4409afe" kindref="member">NoSubOrUnSubWasMade</ref>,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a020369ca8aa49f6f07323e60daadea9d" kindref="member">NeedAlteastOneSub</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a447a0a0652dcbe62138056320ea50257" kindref="member">NoSub</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048af7febc13de29834f3766e201c52cb05b" kindref="member">NoMethodInfo</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a9b8e7e8d81a268a2240a96b7962a0183" kindref="member">NoEvent</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a3dfe2521235d8e879e0940cb6c86c155" kindref="member">NoUnEvent</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a01f64e68d014bfc21b94db0cc369b32f" kindref="member">NoDelType</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a8512184f958cde80eef601c0c9e27f08" kindref="member">CompileError</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a412e9b8a1ab543e3e8c8ec507cbee5ee" kindref="member">NoTypeForEvent</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a6bea6035f6c13c665971ef550e9ba722" kindref="member">InitFailed</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="FunctionJumper/ReturnCodes.cs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,45 @@
+.TH "FunctionJumper.EventMaster" 3 "Wed Jan 20 2016" "Version V2.0_A12" "Function Jumper" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FunctionJumper.EventMaster \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBEventInterface\fP \fBgetEvent\fP (string _funcName)"
+.br
+.ti -1c
+.RI "static int \fBOverrideFrom\fP (MethodInfo sourceMethod, string OnCalledG, string returnType, string usingDirectives, string args, string[] assemblyNeeded)"
+.br
+.ti -1c
+.RI "static string \fBgetName\fP (MethodInfo method)"
+.br
+.in -1c
+.SS "Static Package Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBaddOverriddenMethod\fP (MethodInfo overridenMethod)"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static List< MethodInfo > \fBoverriddenMethods\fP = new List<MethodInfo>()"
+.br
+.ti -1c
+.RI "static List< \fBEventInterface\fP > \fBevents\fP = new List<\fBEventInterface\fP>()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 27 of file EventMaster\&.cs\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Function Jumper from the source code\&.

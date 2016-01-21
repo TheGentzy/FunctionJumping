@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.11">
+  <compound refid="d3/de8/class_function_jumper_1_1_event_interface" kind="class"><name>FunctionJumper::EventInterface</name>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a4e425c2c58df5f53b03b46894b47d056" kind="property"><name>eventSub</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a8a19784bab272bdbd5e7088dcd36e860" kind="property"><name>eventUnSub</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a4b9558d17b2d882a32cb6e80fc981b60" kind="property"><name>funcName</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1aeb36ddbe531e7fdd55050f03bdf46e4c" kind="property"><name>funcType</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a5afdfac9cfadee2a5a576589d37c90e5" kind="property"><name>delegateMethod</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1aa682c71e332e627aae3d17effd55c066" kind="property"><name>delegateType</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a499cf9681ee121af520b98d2b2a421e7" kind="property"><name>subCount</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a244fed46b8a1caf01e214752f03d6213" kind="function"><name>InitINTERNAL</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1aa6c6be50833e2e22f67901b466c5398a" kind="function"><name>AddSub</name></member>
+    <member refid="d3/de8/class_function_jumper_1_1_event_interface_1a0ff2b04db56fc4c17d272105b097912f" kind="function"><name>RemoveSub</name></member>
+  </compound>
+  <compound refid="d4/d90/class_function_jumper_1_1_event_master" kind="class"><name>FunctionJumper::EventMaster</name>
+    <member refid="d4/d90/class_function_jumper_1_1_event_master_1a8a4690c16fe028c3f92c9d3d8e3c5bd5" kind="variable"><name>overriddenMethods</name></member>
+    <member refid="d4/d90/class_function_jumper_1_1_event_master_1a40a7a0fa1cf0b33feb7e1ed0609ce7f4" kind="variable"><name>events</name></member>
+    <member refid="d4/d90/class_function_jumper_1_1_event_master_1ab60dc9db59f1a0ba137bd2bf2cb57e27" kind="function"><name>getEvent</name></member>
+    <member refid="d4/d90/class_function_jumper_1_1_event_master_1a3102765d8a6a7e3f1a02f8177b026cf5" kind="function"><name>OverrideFrom</name></member>
+    <member refid="d4/d90/class_function_jumper_1_1_event_master_1ad47c05684ae1994e8bcc7b54a3c6103a" kind="function"><name>getName</name></member>
+    <member refid="d4/d90/class_function_jumper_1_1_event_master_1ad2f3f9c00e7bce0319e2b0a0a5279220" kind="function"><name>addOverriddenMethod</name></member>
+  </compound>
+  <compound refid="d1/d0b/namespace_function_jumper" kind="namespace"><name>FunctionJumper</name>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048" kind="enum"><name>ReturnCodes</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a505a83f220c02df2f85c3810cd9ceb38" kind="enumvalue"><name>Success</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a23bbdb9f7572fedc1c5be12ab4409afe" kind="enumvalue"><name>NoSubOrUnSubWasMade</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a020369ca8aa49f6f07323e60daadea9d" kind="enumvalue"><name>NeedAlteastOneSub</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a447a0a0652dcbe62138056320ea50257" kind="enumvalue"><name>NoSub</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048af7febc13de29834f3766e201c52cb05b" kind="enumvalue"><name>NoMethodInfo</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a9b8e7e8d81a268a2240a96b7962a0183" kind="enumvalue"><name>NoEvent</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a3dfe2521235d8e879e0940cb6c86c155" kind="enumvalue"><name>NoUnEvent</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a01f64e68d014bfc21b94db0cc369b32f" kind="enumvalue"><name>NoDelType</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a8512184f958cde80eef601c0c9e27f08" kind="enumvalue"><name>CompileError</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a412e9b8a1ab543e3e8c8ec507cbee5ee" kind="enumvalue"><name>NoTypeForEvent</name></member>
+    <member refid="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a6bea6035f6c13c665971ef550e9ba722" kind="enumvalue"><name>InitFailed</name></member>
+  </compound>
+  <compound refid="d8/dd0/namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="d9/d60/namespace_system_1_1_code_dom_1_1_compiler" kind="namespace"><name>System::CodeDom::Compiler</name>
+  </compound>
+  <compound refid="d9/d1b/namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="d0/d9d/namespace_system_1_1_reflection" kind="namespace"><name>System::Reflection</name>
+  </compound>
+  <compound refid="da/d68/_event_interface_8cs" kind="file"><name>EventInterface.cs</name>
+  </compound>
+  <compound refid="da/d5c/_event_master_8cs" kind="file"><name>EventMaster.cs</name>
+  </compound>
+  <compound refid="d5/d4d/mainpage_8dox" kind="file"><name>mainpage.dox</name>
+  </compound>
+  <compound refid="d7/df3/_return_codes_8cs" kind="file"><name>ReturnCodes.cs</name>
+  </compound>
+  <compound refid="todo" kind="page"><name>todo</name>
+  </compound>
+  <compound refid="bug" kind="page"><name>bug</name>
+  </compound>
+  <compound refid="dir_2ad62f8883c2861bc22616bcddb1adde" kind="dir"><name>FunctionJumper</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

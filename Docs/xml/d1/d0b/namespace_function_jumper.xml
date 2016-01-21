@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="d1/d0b/namespace_function_jumper" kind="namespace" language="C#">
+    <compoundname>FunctionJumper</compoundname>
+    <innerclass refid="d3/de8/class_function_jumper_1_1_event_interface" prot="public">FunctionJumper::EventInterface</innerclass>
+    <innerclass refid="d4/d90/class_function_jumper_1_1_event_master" prot="public">FunctionJumper::EventMaster</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048" prot="public" static="no">
+        <name>ReturnCodes</name>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a505a83f220c02df2f85c3810cd9ceb38" prot="public">
+          <name>Success</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Returned by all functions when successful. </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a23bbdb9f7572fedc1c5be12ab4409afe" prot="public">
+          <name>NoSubOrUnSubWasMade</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>AddSub or RemoveSub had an exeption when tring to add the delegate to the event. </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a020369ca8aa49f6f07323e60daadea9d" prot="public">
+          <name>NeedAlteastOneSub</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>RemoveSub will not allow a function to have less than one sub. </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a447a0a0652dcbe62138056320ea50257" prot="public">
+          <name>NoSub</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>RemoveSub has no subs to remove... did you even check the count? </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048af7febc13de29834f3766e201c52cb05b" prot="public">
+          <name>NoMethodInfo</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>MethodInfo is null. A good practice is to check the result of the functions you call. </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a9b8e7e8d81a268a2240a96b7962a0183" prot="public">
+          <name>NoEvent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>INTERNAL ERROR. IF YOU RECIVE THIS REPORT A BUG! </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a3dfe2521235d8e879e0940cb6c86c155" prot="public">
+          <name>NoUnEvent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>INTERNAL ERROR. IF YOU RECIVE THIS REPORT A BUG! </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a01f64e68d014bfc21b94db0cc369b32f" prot="public">
+          <name>NoDelType</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>We couldn&apos;t make/find a delegte. If from AddSub or RemoveSub check your method info. If from OverrideFrom then report a bug! </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a8512184f958cde80eef601c0c9e27f08" prot="public">
+          <name>CompileError</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>The code you gave us has errors when inserted into our template. You failed. Try again. (Unless I broke it this vrsion... :[) </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a412e9b8a1ab543e3e8c8ec507cbee5ee" prot="public">
+          <name>NoTypeForEvent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>INTERNAL ERROR. IF YOU RECIVE THIS REPORT A BUG! </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d1/d0b/namespace_function_jumper_a24f4a41f38d23a485ba532d6171b2048_1a24f4a41f38d23a485ba532d6171b2048a6bea6035f6c13c665971ef550e9ba722" prot="public">
+          <name>InitFailed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>We failed to invoke the init method... maybe its a bug in the code you passed... mabey we broke it this version... We&apos;ll never know... </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/ReturnCodes.cs" line="19" column="1" bodyfile="FunctionJumper/ReturnCodes.cs" bodystart="18" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="FunctionJumper/EventInterface.cs" line="16" column="1"/>
+  </compounddef>
+</doxygen>

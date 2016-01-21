@@ -1,0 +1,86 @@
+.TH "FunctionJumper" 3 "Wed Jan 20 2016" "Version V2.0_A12" "Function Jumper" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FunctionJumper \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBEventInterface\fP"
+.br
+.ti -1c
+.RI "class \fBEventMaster\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBReturnCodes\fP { \fBReturnCodes\&.Success\fP, \fBReturnCodes\&.NoSubOrUnSubWasMade\fP, \fBReturnCodes\&.NeedAlteastOneSub\fP, \fBReturnCodes\&.NoSub\fP, \fBReturnCodes\&.NoMethodInfo\fP, \fBReturnCodes\&.NoEvent\fP, \fBReturnCodes\&.NoUnEvent\fP, \fBReturnCodes\&.NoDelType\fP, \fBReturnCodes\&.CompileError\fP, \fBReturnCodes\&.NoTypeForEvent\fP, \fBReturnCodes\&.InitFailed\fP }"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBFunctionJumper\&.ReturnCodes\fP\fC [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISuccess \fP\fP
+Returned by all functions when successful\&. 
+.TP
+\fB\fINoSubOrUnSubWasMade \fP\fP
+AddSub or RemoveSub had an exeption when tring to add the delegate to the event\&. 
+.TP
+\fB\fINeedAlteastOneSub \fP\fP
+RemoveSub will not allow a function to have less than one sub\&. 
+.TP
+\fB\fINoSub \fP\fP
+RemoveSub has no subs to remove\&.\&.\&. did you even check the count? 
+.TP
+\fB\fINoMethodInfo \fP\fP
+MethodInfo is null\&. A good practice is to check the result of the functions you call\&. 
+.TP
+\fB\fINoEvent \fP\fP
+INTERNAL ERROR\&. IF YOU RECIVE THIS REPORT A BUG! 
+.TP
+\fB\fINoUnEvent \fP\fP
+INTERNAL ERROR\&. IF YOU RECIVE THIS REPORT A BUG! 
+.TP
+\fB\fINoDelType \fP\fP
+We couldn't make/find a delegte\&. If from AddSub or RemoveSub check your method info\&. If from OverrideFrom then report a bug! 
+.TP
+\fB\fICompileError \fP\fP
+The code you gave us has errors when inserted into our template\&. You failed\&. Try again\&. (Unless I broke it this vrsion\&.\&.\&. :[) 
+.TP
+\fB\fINoTypeForEvent \fP\fP
+INTERNAL ERROR\&. IF YOU RECIVE THIS REPORT A BUG! 
+.TP
+\fB\fIInitFailed \fP\fP
+We failed to invoke the init method\&.\&.\&. maybe its a bug in the code you passed\&.\&.\&. mabey we broke it this version\&.\&.\&. We'll never know\&.\&.\&. 
+.PP
+Definition at line 18 of file ReturnCodes\&.cs\&.
+.PP
+.nf
+19     {
+20         Success,                
+21         NoSubOrUnSubWasMade,    
+22         NeedAlteastOneSub,      
+23         NoSub,                  
+24         NoMethodInfo,           
+25         NoEvent,                
+26         NoUnEvent,              
+27         NoDelType,              
+28         CompileError,           
+29         NoTypeForEvent,         
+30         InitFailed              
+31     }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Function Jumper from the source code\&.

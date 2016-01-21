@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>My Function Jumper</title>
+    <detaileddescription>
+<sect1 id="index_1intro_sec">
+<title>Introduction</title>
+<para>Welcome to Gents&apos; Function Jumper, a derivative of RawCode&apos;s weird assembly stuff! Explore areound and view our not so complete documentation. Have fun!</para></sect1>
+<sect1 id="index_1warning_sec">
+<title>WARNING!</title>
+<para>Due to the nature of this software, and ANY misuse of this software WILL CRASH your program. Misuse may also DAMMAGE you PC by overriding incorect sections of your memory.</para><para>This software uses many of the same concepts as viruses, do not be alarmed if your anti-virus flags this software a virus.</para><para>Please countinue with your own caution.</para><para>THE WORKS IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE WORKS OR THE USE OR OTHER DEALINGS IN THE WORKS.</para></sect1>
+<sect1 id="index_1licence_sec">
+<title>Licence!</title>
+<para><ulink url="https://docs.google.com/document/d/1nuhzI4cbS4Mx8ZZ_giN2Di9djBBTCbMzWESPGrPQxrg">https://docs.google.com/document/d/1nuhzI4cbS4Mx8ZZ_giN2Di9djBBTCbMzWESPGrPQxrg</ulink></para><para><itemizedlist>
+<listitem><para>Now, no one wants to read a license, so let me sum it up for ya (Note: this does not replace the license):<itemizedlist>
+<listitem><para>No Commercial (I DO classify donations as Commercial)</para></listitem><listitem><para>I reserve the right to ban you of using my suff</para></listitem><listitem><para>I reserve the right to unban you of using my suff</para></listitem><listitem><para>You must use the same license as my works if you use my work</para></listitem><listitem><para>if you break the terms of the license then your automatically banned from using my works, and require MY permission to unban you</para></listitem><listitem><para>You must add the license in your works if you use my work</para></listitem><listitem><para>I am not responsible for anything you do.</para></listitem><listitem><para>I am not responsible for any damages you cause.</para></listitem><listitem><para>I don&apos;t endorse or support you unless I&apos;ve stated that myself.</para></listitem><listitem><para>When I update the license, you must comply with the new version within 2 weeks.</para></listitem></itemizedlist>
+</para></listitem><listitem><para>What to do if you want to use my works(Note: this does not replace the license):<itemizedlist>
+<listitem><para>Credit me in a manner that does not make it look like I endorse you.</para></listitem><listitem><para>Add that copy of the license to your works.</para></listitem><listitem><para>FOLLOW IT.</para></listitem></itemizedlist>
+</para></listitem></itemizedlist>
+</para></sect1>
+<sect1 id="index_1Features_sec">
+<title>Features!</title>
+<para><itemizedlist>
+<listitem><para>Override any static function</para></listitem><listitem><para>Multiple function can override the same function</para></listitem><listitem><para>Only 1 class needed</para></listitem><listitem><para>Supports functions with overrides</para></listitem></itemizedlist>
+</para><para>Contact <ulink url="mailto:TheGentzy@gmail.com">TheGentzy@gmail.com</ulink> for more help. Please don&apos;t annoy me with stupid questions, if you won&apos;t bother reading the documentation then I won&apos;t bother with helping you. </para></sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

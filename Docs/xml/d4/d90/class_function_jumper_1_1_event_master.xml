@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="d4/d90/class_function_jumper_1_1_event_master" kind="class" language="C#" prot="public">
+    <compoundname>FunctionJumper::EventMaster</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="d4/d90/class_function_jumper_1_1_event_master_1a8a4690c16fe028c3f92c9d3d8e3c5bd5" prot="private" static="yes" mutable="no">
+        <type>List&lt; MethodInfo &gt;</type>
+        <definition>List&lt;MethodInfo&gt; FunctionJumper.EventMaster.overriddenMethods</definition>
+        <argsstring></argsstring>
+        <name>overriddenMethods</name>
+        <initializer>= new List&lt;MethodInfo&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/EventMaster.cs" line="29" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d90/class_function_jumper_1_1_event_master_1a40a7a0fa1cf0b33feb7e1ed0609ce7f4" prot="private" static="yes" mutable="no">
+        <type>List&lt; <ref refid="d3/de8/class_function_jumper_1_1_event_interface" kindref="compound">EventInterface</ref> &gt;</type>
+        <definition>List&lt;EventInterface&gt; FunctionJumper.EventMaster.events</definition>
+        <argsstring></argsstring>
+        <name>events</name>
+        <initializer>= new List&lt;<ref refid="d3/de8/class_function_jumper_1_1_event_interface" kindref="compound">EventInterface</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/EventMaster.cs" line="30" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d4/d90/class_function_jumper_1_1_event_master_1ab60dc9db59f1a0ba137bd2bf2cb57e27" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d3/de8/class_function_jumper_1_1_event_interface" kindref="compound">EventInterface</ref></type>
+        <definition>static EventInterface FunctionJumper.EventMaster.getEvent</definition>
+        <argsstring>(string _funcName)</argsstring>
+        <name>getEvent</name>
+        <param>
+          <type>string</type>
+          <declname>_funcName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/EventMaster.cs" line="32" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="32" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d90/class_function_jumper_1_1_event_master_1a3102765d8a6a7e3f1a02f8177b026cf5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int FunctionJumper.EventMaster.OverrideFrom</definition>
+        <argsstring>(MethodInfo sourceMethod, string OnCalledG, string returnType, string usingDirectives, string args, string[] assemblyNeeded)</argsstring>
+        <name>OverrideFrom</name>
+        <param>
+          <type>MethodInfo</type>
+          <declname>sourceMethod</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>OnCalledG</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>returnType</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>usingDirectives</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>args</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>assemblyNeeded</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/EventMaster.cs" line="49" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="49" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d90/class_function_jumper_1_1_event_master_1ad47c05684ae1994e8bcc7b54a3c6103a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string FunctionJumper.EventMaster.getName</definition>
+        <argsstring>(MethodInfo method)</argsstring>
+        <name>getName</name>
+        <param>
+          <type>MethodInfo</type>
+          <declname>method</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/EventMaster.cs" line="207" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="207" bodyend="214"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="d4/d90/class_function_jumper_1_1_event_master_1ad2f3f9c00e7bce0319e2b0a0a5279220" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void FunctionJumper.EventMaster.addOverriddenMethod</definition>
+        <argsstring>(MethodInfo overridenMethod)</argsstring>
+        <name>addOverriddenMethod</name>
+        <param>
+          <type>MethodInfo</type>
+          <declname>overridenMethod</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="FunctionJumper/EventMaster.cs" line="44" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="44" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="FunctionJumper/EventMaster.cs" line="28" column="1" bodyfile="FunctionJumper/EventMaster.cs" bodystart="27" bodyend="215"/>
+    <listofallmembers>
+      <member refid="d4/d90/class_function_jumper_1_1_event_master_1ad2f3f9c00e7bce0319e2b0a0a5279220" prot="package" virt="non-virtual"><scope>FunctionJumper::EventMaster</scope><name>addOverriddenMethod</name></member>
+      <member refid="d4/d90/class_function_jumper_1_1_event_master_1a40a7a0fa1cf0b33feb7e1ed0609ce7f4" prot="private" virt="non-virtual"><scope>FunctionJumper::EventMaster</scope><name>events</name></member>
+      <member refid="d4/d90/class_function_jumper_1_1_event_master_1ab60dc9db59f1a0ba137bd2bf2cb57e27" prot="public" virt="non-virtual"><scope>FunctionJumper::EventMaster</scope><name>getEvent</name></member>
+      <member refid="d4/d90/class_function_jumper_1_1_event_master_1ad47c05684ae1994e8bcc7b54a3c6103a" prot="public" virt="non-virtual"><scope>FunctionJumper::EventMaster</scope><name>getName</name></member>
+      <member refid="d4/d90/class_function_jumper_1_1_event_master_1a8a4690c16fe028c3f92c9d3d8e3c5bd5" prot="private" virt="non-virtual"><scope>FunctionJumper::EventMaster</scope><name>overriddenMethods</name></member>
+      <member refid="d4/d90/class_function_jumper_1_1_event_master_1a3102765d8a6a7e3f1a02f8177b026cf5" prot="public" virt="non-virtual"><scope>FunctionJumper::EventMaster</scope><name>OverrideFrom</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
