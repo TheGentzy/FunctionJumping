@@ -1,0 +1,52 @@
+﻿/**
+ * \mainpage My Function Jumper
+ *
+ * \section intro_sec Introduction
+ *
+ * Welcome to Gents' Function Jumper, a derivative of RawCode's weird assembly stuff! Explore areound and view our not so complete documentation. Have fun!
+ *
+ * \section warning_sec WARNING!
+ *
+ * Due to the nature of this software, and ANY misuse of this software WILL CRASH your program. 
+ * Misuse may also DAMMAGE you PC by overriding incorect sections of your memory.
+ * 
+ * This software uses many of the same concepts as viruses, do not be alarmed if your anti-virus flags this software a virus. 
+ *
+ * Please countinue with your own caution.
+ *
+ * THE WORKS IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE WORKS OR THE USE OR OTHER DEALINGS IN THE WORKS.
+ *
+ * \section licence_sec Licence!
+ *
+ * https://docs.google.com/document/d/1nuhzI4cbS4Mx8ZZ_giN2Di9djBBTCbMzWESPGrPQxrg
+ * 
+ * - Now, no one wants to read a license, so let me sum it up for ya (Note: this does not replace the license):
+ *   + No Commercial (I DO classify donations as Commercial)
+ *   + I reserve the right to ban you of using my suff
+ *   + I reserve the right to unban you of using my suff
+ *   + You must use the same license as my works if you use my work
+ *   + if you break the terms of the license then your automatically banned from using my works, and require MY permission to unban you
+ *   + You must add the license in your works if you use my work
+ *   + I am not responsible for anything you do.
+ *   + I am not responsible for any damages you cause.
+ *   + I don't endorse or support you unless I've stated that myself.
+ *   + When I update the license, you must comply with the new version within 2 weeks.
+ *
+ *
+ *
+ * - What to do if you want to use my works(Note: this does not replace the license):
+ *   + Credit me in a manner that does not make it look like I endorse you.
+ *   + Add that copy of the license to your works.
+ *   + FOLLOW IT.
+ *
+ * \section Features_sec Features!
+ *
+ *   + Override any static function
+ *   + Multiple function can override the same function
+ *   + Only 1 class needed
+ *   + Supports functions with overrides
+ *
+ * Contact <TheGentzy@gmail.com> for more help. Please don't annoy me with stupid questions, if you won't bother reading the documentation then I won't bother with helping you.
+ * 
+ */
+
