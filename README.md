@@ -43,4 +43,3 @@ What to do if you want to use my works(Note: this does not replace the license):
     -Credit me in a manner that does not make it look like I endorse you.
     -Add that copy of the license to your works.
     -FOLLOW IT.
-	
