@@ -5,21 +5,35 @@ This is meant to be an upgrade of CCL's detours that supports multiple overridin
 V2.0_A12
 
 Features:
+
 	|>Override any static function
+	
 	|>Multiple function can override the same function
+	
 	|>Only 1 class needed
+	
 	|>Supports functions with overrides
+	
 	V
 
 Issues:
+
 	|>No/Buggy support for instance functions 
+	
 	|>Unoptimized (One init takes ~1 second...)
-	|>Some non orthodox methods (Avast even called it a Virus... so be prepared to disable your AV)
-	|>Compile some code at runtime, your gonna need to have C# compiler installed
-	|>EXTREME reflection & memory twiddling. Debuggers *CRASH* when pressing 'Step into' on an overridden function 
+	
+	|>Uses some non orthodox methods (Avast even called it a Virus... so be prepared to disable your AV)
+	
+	|>Compiles some code at runtime, your gonna need to have C# compiler installed
+	
+	|>EXTREME reflection & memory twiddling. Debuggers *CRASH* when pressing 'Step into' on an overridden function
+	
 	|>Stack traces don't say the REAL method that's running (some times)
+	
 	|>Windows support only (Linux support coming soon) 
+	
 	|>Error handling not yet implemented, prepare to have 1 wrong/missing letter crash your game
+	
 	V
 	
 Licence:
